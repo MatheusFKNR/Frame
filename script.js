@@ -51,3 +51,36 @@ window.addEventListener('load', () => {
     updateCarousel();
     checkScrollAndAnimate(); // Executa uma vez no load
 });
+
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+const menuOverlay = document.getElementById('menuOverlay');
+
+// Função para abrir/fechar menu
+function toggleMenu() {
+    navLinks.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
+}
+
+menuToggle.addEventListener('click', toggleMenu);
+menuOverlay.addEventListener('click', toggleMenu); // Fecha ao clicar fora
+
+// Fecha o menu automaticamente ao clicar em um link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuOverlay.classList.remove('active');
+    });
+});
+
+// Ajuste da Topbar no Scroll (Mantenha o que você já tinha e adicione isso)
+window.addEventListener('scroll', () => {
+    const topbar = document.getElementById('topbar');
+    if (window.scrollY > 50) {
+        topbar.classList.add('solid');
+        topbar.classList.remove('transparente');
+    } else {
+        topbar.classList.remove('solid');
+        topbar.classList.add('transparente');
+    }
+});
