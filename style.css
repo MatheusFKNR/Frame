@@ -1,0 +1,107 @@
+:root {
+  --primary: #3F5678;
+  --secondary: #7e90af;
+  --bg: #e5f1fe;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background-color: var(--bg);
+  color: #333;
+  line-height: 1.6;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  background: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo {
+  color: var(--white);
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+}
+
+/* Carrossel */
+.carousel {
+  width: 90%;
+  max-width: 800px;
+  margin: 40px auto; 
+  position: relative;
+  border-radius: 15px;
+  border: 10px solid var(--primary);
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.carousel img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  flex: 0 0 100%;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(63, 86, 120, 0.8);
+  color: white;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.prev:hover, .next:hover { background: var(--primary); }
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* Grid de Conteúdo */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.card {
+  padding: 40px;
+  border-radius: 12px;
+  background: var(--secondary);
+  color: var(--white);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card h3 { margin-top: 0; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+
+.contato-list { list-style: none; padding: 0; }
+.contato-list li { margin-bottom: 10px; }
+
+.bottom {
+  width: 100%;
+  padding: 40px 0;
+  background: var(--primary);
+  color: var(--white);
+  text-align: center;
+  margin-top: 50px;
+}
