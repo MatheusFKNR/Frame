@@ -3,46 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FRAME | Eventos Inesquecíveis</title>
+  <title>FRAME | Fotografia de Casamento</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="topbar">
-  <h1 class="logo">FRAME</h1> 
+<header class="topbar transparente" id="topbar">
+  <div class="header-container">
+    <a href="#" class="logo">FRAME</a>
+    <nav class="nav-links">
+      <a href="#portfolio">Portfólio</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
 </header>
 
 <main>
-  <section class="carousel">
-    <div class="carousel-images" id="carouselImages">
-      <img src="imagens/casamento2.jpeg" alt="Casamento 1">
-      <img src="imagens/casamento3.jpeg" alt="Casamento 2">
-      <img src="imagens/casamento4.jpeg" alt="Casamento 3">
+  <section class="hero-section">
+    <div class="hero-content">
+      <h2 class="animate-reveal">Capturando a essência <br>do seu <span>amor</span>.</h2>
+      <p class="animate-reveal-delay">Especialistas em eternizar o seu grande dia.</p>
     </div>
-    <button class="prev" id="prevBtn" aria-label="Anterior">&#10094;</button>
-    <button class="next" id="nextBtn" aria-label="Próximo">&#10095;</button>
   </section>
 
-  <section class="container">
-    <article class="card grande">
-      <h3>Sobre nós</h3>
-      <p>Cada celebração é ímpar e inesquecível. Além de um espaço exclusivo, a Frame entrega muito além: nossos especialistas fornecem todo o suporte necessário.</p>
-      <p>Cuidamos da gastronomia, decoração e tecnologia para que você foque apenas em viver o seu sonho.</p>
+  <section class="portfolio-section" id="portfolio">
+    <div class="carousel-wrapper animate-on-scroll slide-up">
+      <div class="carousel-container">
+        <div class="carousel-images" id="carouselImages">
+          <img src="imagens/casamento2.jpeg" alt="Noivos se beijando na cerimônia">
+          <img src="imagens/casamento3.jpeg" alt="Noivos celebrando com amigos">
+          <img src="imagens/casamento4.jpeg" alt="Detalhes da noiva e decoração">
+        </div>
+      </div>
+      <button class="nav-btn prev" id="prevBtn" aria-label="Anterior">&#10094;</button>
+      <button class="nav-btn next" id="nextBtn" aria-label="Próximo">&#10095;</button>
+    </div>
+  </section>
+
+  <section class="info-grid animate-on-scroll fade-in">
+    <article class="card sobre-nos active-hover" id="sobre">
+      <h3>Além da lente: <br>nossa essência.</h3>
+      <div class="divider"></div>
+      <p>Entendemos que cada casamento é único. A **Frame** é mais do que fotografia; é a arte de capturar emoções reais, luzes naturais e detalhes sutis.</p>
+      <p>Cuidamos de tudo para que seu único trabalho seja viver o sonho. Nossa paixão é entregar recordações eternas.</p>
     </article>
 
-    <article class="card pequena">
-      <h3>Contato</h3>
+    <article class="card contato" id="contato">
+      <h3>Vamos conversar?</h3>
       <ul class="contato-list">
-        <li><strong>Email:</strong> frame@gmail.com.br</li>
-        <li><strong>Tel:</strong> (47) 91234-5678</li>
-        <li><strong>Insta:</strong> @frame</li>
+        <li>
+          <i class="fas fa-envelope"></i>
+          <div><span>E-mail</span><a href="mailto:contato@frame.com.br">contato@frame.com.br</a></div>
+        </li>
+        <li>
+          <i class="fas fa-phone-alt"></i>
+          <div><span>Telefone</span><a href="tel:+5547912345678">(47) 91234-5678</a></div>
+        </li>
+        <li>
+          <i class="fab fa-instagram"></i>
+          <div><span>Instagram</span><a href="https://instagram.com/frame" target="_blank">@frame.eventos</a></div>
+        </li>
       </ul>
     </article>
   </section>
 </main>
 
-<footer class="bottom">
-  <p>&copy; 2026 FRAME - Todos os direitos reservados.</p>
+<footer class="bottom-footer">
+  <p>&copy; 2024 FRAME Fotografia. Todos os direitos reservados.</p>
 </footer>
 
 <script src="script.js"></script>

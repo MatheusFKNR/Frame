@@ -1,107 +1,256 @@
+/* --- Variáveis e Reset (Cores e Fontes de Luxo) --- */
 :root {
-  --primary: #3F5678;
-  --secondary: #7e90af;
-  --bg: #e5f1fe;
+  --primary: #2C3E50;
+  --primary-dark: #1A2531;
+  --accent: #D4AF37; /* Dourado Vivo */
+  --accent-light: #E9D5A3; /* Dourado Pálido */
+  --bg-light: #F4F7F6;
   --white: #ffffff;
+  --font-title: 'Marcellus', serif;
+  --font-body: 'Poppins', sans-serif;
+  
+  /* Sombra complexa e espalhada para dar profundidade */
+  --shadow-lg: 0 30px 60px -10px rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.06);
 }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-  margin: 0;
-  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-  background-color: var(--bg);
+  font-family: var(--font-body);
+  background-color: var(--bg-light);
   color: #333;
-  line-height: 1.6;
+  line-height: 1.8;
+  overflow-x: hidden;
 }
 
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+/* --- Topbar Dinâmica (Header) --- */
 .topbar {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 70px;
-  background: var(--primary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: fixed;
+  top: 0; width: 100%; height: 80px;
+  display: flex; justify-content: center; align-items: center;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: all 0.5s ease;
+}
+
+.header-container {
+  width: 90%; max-width: 1400px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.topbar.transparente { background: transparent; }
+.topbar.solid {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 2px 30px rgba(0,0,0,0.08);
 }
 
 .logo {
   color: var(--white);
-  font-size: 1.8rem;
-  letter-spacing: 2px;
+  font-family: var(--font-title);
+  font-size: 30px; letter-spacing: 5px;
+  font-weight: 400;
+}
+.topbar.solid .logo { color: var(--primary); }
+
+.nav-links { display: flex; gap: 30px; }
+.nav-links a {
+  color: rgba(255,255,255,0.9); font-size: 13px;
+  text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 300;
+}
+.topbar.solid .nav-links a { color: var(--primary); }
+.nav-links a:hover { color: var(--accent); }
+
+/* --- SEÇÃO HERO (IMERSÃO TOTAL) --- */
+.hero-section {
+  position: relative;
+  width: 100%; height: 100vh;
+  display: flex; justify-content: center; align-items: center;
+  overflow: hidden;
+  background-image: url('imagens/hero-bg.jpg'); /* Adicione sua imagem aqui */
+  background-size: cover;
+  background-position: center;
 }
 
-/* Carrossel */
-.carousel {
-  width: 90%;
-  max-width: 800px;
-  margin: 40px auto; 
+.hero-section::after { /* Overlay Dinâmico */
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+  z-index: 0;
+}
+
+.hero-content {
+  text-align: center; color: var(--white); z-index: 1;
+  padding: 0 20px;
+}
+
+.hero-content h2 {
+  font-family: var(--font-title); font-size: 55px;
+  font-weight: 400; line-height: 1.2; margin-bottom: 25px;
+}
+.hero-content span { color: var(--accent); font-weight: 600; }
+
+/* --- SEÇÃO PORTFÓLIO (CARROSSEL COM MOLDURAS DOURADAS INTERNAS) --- */
+.portfolio-section {
+  padding: 100px 0; background-color: var(--white);
+  display: flex; justify-content: center;
+}
+
+/* --- SEÇÃO PORTFÓLIO (MOLDURA DOURADA CLÁSSICA) --- */
+.portfolio-section {
+  padding: 80px 0;
+  background-color: var(--white);
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-wrapper {
   position: relative;
-  border-radius: 15px;
-  border: 10px solid var(--primary);
+  width: 95%;
+  max-width: 1100px;
+  border-radius: 4px; /* Cantos quase retos para um look mais fotográfico/galeria */
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  
+  /* A Moldura Dourada Clássica */
+  border: 3px solid #D4AF37; /* Cor dourada sólida */
+  outline: 1px solid rgba(212, 175, 55, 0.3); /* Uma linha externa fina para brilho extra */
+  outline-offset: 4px; /* Afasta a linha fina da borda principal */
+  
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15); /* Sombra para profundidade */
+  background-color: white;
+}
+
+/* Removendo os arabescos anteriores (::before e ::after) */
+.carousel-wrapper::before,
+.carousel-wrapper::after {
+  display: none; 
+}
+
+.carousel-container {
+  overflow: hidden;
+}
+
+.carousel-images img {
+  width: 100%;
+  height: 600px; /* Ou a altura que você definiu */
+  object-fit: cover;
+  flex: 0 0 100%; /* Isso garante que cada uma das 5 imagens ocupe o espaço todo */
+  display: block;
+}
+
+/* Ajuste nos botões para combinar com o estilo minimalista */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(5px);
+  color: #2C3E50;
+  border: 1px solid #D4AF37; /* Borda dourada fina nos botões */
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s ease;
+  z-index: 10;
+}
+
+.nav-btn:hover {
+  background: #D4AF37;
+  color: white;
+}
+/* O container resolve o problema do corte brusco */
+.carousel-container {
+  overflow: hidden;
 }
 
 .carousel-images {
   display: flex;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-.carousel img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  flex: 0 0 100%;
+.carousel-images img {
+  width: 100%; height: 600px; /* Altura imponente */
+  object-fit: cover; flex: 0 0 100%;
 }
 
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(63, 86, 120, 0.8);
-  color: white;
-  border: none;
-  padding: 15px;
-  cursor: pointer;
-  font-size: 20px;
-  border-radius: 50%;
-  transition: 0.3s;
+/* --- MOLDURAS DOURADAS (ESTILO VETORIAL CSS) --- */
+/* Estas propriedades usam clip-path para desenhar os arabescos inline */
+
+/* Arabesco Superior Esquerdo */
+.carousel-wrapper::before {
+  content: ''; position: absolute; top: 15px; left: 15px;
+  width: 150px; height: 150px;
+  background-color: var(--accent);
+  z-index: 10;
+  opacity: 0.85;
+  clip-path: path('M 0 0 L 150 0 L 150 20 C 130 20 120 10 100 10 C 80 10 70 20 50 20 C 30 20 20 10 0 10 Z C 0 10 10 20 10 40 C 10 60 0 70 0 90 C 0 110 10 120 10 140 L 10 150 L 0 150 Z');
 }
 
-.prev:hover, .next:hover { background: var(--primary); }
-.prev { left: 15px; }
-.next { right: 15px; }
+/* Arabesco Inferior Direito */
+.carousel-wrapper::after {
+  content: ''; position: absolute; bottom: 15px; right: 15px;
+  width: 150px; height: 150px;
+  background-color: var(--accent);
+  z-index: 10;
+  opacity: 0.85;
+  transform: rotate(180deg);
+  clip-path: path('M 0 0 L 150 0 L 150 20 C 130 20 120 10 100 10 C 80 10 70 20 50 20 C 30 20 20 10 0 10 Z C 0 10 10 20 10 40 C 10 60 0 70 0 90 C 0 110 10 120 10 140 L 10 150 L 0 150 Z');
+}
 
-/* Grid de Conteúdo */
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 0 20px;
+/* Botões de Navegação Refinados */
+.nav-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.95); color: var(--primary);
+  border: none; width: 60px; height: 60px; cursor: pointer; font-size: 22px;
+  border-radius: 50%; display: flex; justify-content: center; align-items: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: 0.4s ease; z-index: 100; /* Z-index maior que as molduras */
+}
+.nav-btn:hover { background: var(--accent); color: var(--white); transform: translateY(-50%) scale(1.15); }
+.prev { left: 40px; } .next { right: 40px; }
+
+/* --- Grid de Informações e Contato (Mantido) --- */
+.info-grid {
+  display: grid; grid-template-columns: 1.8fr 1fr; gap: 60px;
+  max-width: 1300px; margin: 100px auto; padding: 0 40px;
 }
 
 .card {
-  padding: 40px;
-  border-radius: 12px;
-  background: var(--secondary);
-  color: var(--white);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 60px; border-radius: 20px; background: var(--white);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.06); transition: 0.5s ease;
+  position: relative; overflow: hidden;
 }
+.card:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(0,0,0,0.1); }
+.card h3 { font-family: var(--font-title); color: var(--primary); font-size: 38px; margin-bottom: 25px; font-weight: 400; line-height: 1.3; }
+.card .divider { width: 100px; height: 3px; background-color: var(--accent); margin-bottom: 40px; }
 
-.card h3 { margin-top: 0; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+/* Contato */
+.contato-list { list-style: none; margin-top: 30px; }
+.contato-list li { display: flex; align-items: center; margin-bottom: 30px; transition: transform 0.3s; }
+.contato-list li:hover { transform: translateX(10px); }
+.contato-list li i { font-size: 26px; color: var(--accent); margin-right: 25px; width: 35px; text-align: center; }
+.contato-list li div span { display: block; font-size: 12px; text-transform: uppercase; color: var(--primary); letter-spacing: 2px; opacity: 0.7; }
+.contato-list li div a { font-size: 17px; color: var(--primary); font-weight: 400; }
+.contato-list li div a:hover { color: var(--accent); }
 
-.contato-list { list-style: none; padding: 0; }
-.contato-list li { margin-bottom: 10px; }
+/* Rodapé */
+.bottom-footer { width: 100%; padding: 70px 0; background: var(--primary); color: var(--white); text-align: center; font-size: 14px; font-weight: 300; }
 
-.bottom {
-  width: 100%;
-  padding: 40px 0;
-  background: var(--primary);
-  color: var(--white);
-  text-align: center;
-  margin-top: 50px;
+/* Animação no Scroll */
+.animate-on-scroll { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+.animate-on-scroll.active { opacity: 1; transform: translateY(0); }
+
+/* --- Responsividade --- */
+@media (max-width: 992px) {
+  .hero-content h2 { font-size: 40px; }
+  .info-grid { grid-template-columns: 1fr; gap: 30px; }
+  .carousel-images img { height: 400px; }
+  .card { padding: 40px; }
+  .carousel-wrapper::before, .carousel-wrapper::after { width: 80px; height: 80px; top: 10px; left: 10px; }
+  .carousel-wrapper::after { bottom: 10px; right: 10px; }
 }
